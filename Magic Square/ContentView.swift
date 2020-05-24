@@ -373,20 +373,29 @@ struct ContentView: View {
                 // splash screen
                 ZStack {
                     Color.systemBackground.edgesIgnoringSafeArea(.all)
-                    VStack {
-                        Image("MerlinsMagicSquare")
-                            .resizable()
-                            .frame(width:(400*0.7), height: (135*0.7))
-                            .padding(.bottom, Screen.height/5)
-                        Button("Nedac5")
+                    VStack {                   
+                        Spacer()
+                        VStack {
+                            Image("MerlinsMagicSquare")
+                                .resizable()
+                                .frame(width:(400*0.7), height: (135*0.7))
+                                .padding(.bottom, Screen.height/5)
+                            Button("SAB3R")
+                            {
+                                if let url = URL(string: "https://www.youtube.com/channel/UCcj5o_04z4960aRsq1RLHTQ") {
+                                    UIApplication.shared.open(url)
+                                }
+                            }
+                        }
+                        Spacer()
+                        Button("Privacy Policy")
                         {
-                            if let url = URL(string: "https://www.youtube.com/c/Nedac72") {
+                            if let url = URL(string: "https://raw.githubusercontent.com/AlfredBr/merlins-magic-square/master/PRIVACY.md") {
                                 UIApplication.shared.open(url)
                             }
                         }
                     }
-                    Spacer()
-                }
+                }	
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         print(" hide splash screen")
