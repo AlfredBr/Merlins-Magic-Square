@@ -17,4 +17,4 @@ This app does not use any user data in any way other than to hold your progress 
 The level and move number (i.e. game data) are stored on your phone.  When you delete the app, the game data in also deleted.
 
 * This app exists for your entertainment only.  
-* We do not collect, store or share any user data.
+* We do not collect, store or share any user data outside of your device.
