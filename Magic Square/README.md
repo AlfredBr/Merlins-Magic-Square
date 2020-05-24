@@ -1,1 +1,0 @@
-# merlins-magic-square
