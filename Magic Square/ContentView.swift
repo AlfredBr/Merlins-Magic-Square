@@ -343,6 +343,7 @@ struct ContentView: View {
                     // cheater
                     HStack {
                         Button("Skip") {
+                            self.gsRound += 1
                             self.nextRound()
                         }
                         Text("-")
