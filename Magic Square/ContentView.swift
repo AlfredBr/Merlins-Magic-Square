@@ -30,9 +30,9 @@ struct ContentView: View {
     
     let colors = Color.collection.shuffled()
     let maxRoundsPerLevel = 7 // 7
-    let maxGameLevel = 7 // 7
+    let maxGameLevel = 8 // 8
     
-    var boxSizes = [CGFloat](repeating: -1.0, count: 8)
+    var boxSizes = [CGFloat](repeating: -1.0, count: 9)
     
     @State private var gsLevel : Int = 1
     @State private var gsMove : Int = 1
@@ -56,7 +56,7 @@ struct ContentView: View {
     
     mutating func computeBoxSizes()
     {
-        for i in 2 ..< 9 {
+        for i in 2 ..< 10 {
             let boxSize = round((Screen.width - CGFloat(10+i)) / CGFloat(i))
             boxSizes[i-1] = CGFloat(boxSize)
         }
@@ -175,6 +175,12 @@ struct ContentView: View {
         resetBoard()
     }
     
+    func getLevel(level: Int) -> String
+    {
+        let lvl = level+1
+        return "\(lvl)x\(lvl)"
+    }
+
     var roundsInLevel : Int
     {
         return maxRoundsPerLevel - gsLevel + 1
@@ -296,7 +302,7 @@ struct ContentView: View {
                     // score and stats
                     HStack {
                         Spacer()
-                        Text("Level \(gsLevel)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
+                        Text(getLevel(level: gsLevel)).padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
                         Spacer()
                         //Image(systemName: schemeSymbol )
                         Text("Round \(gsRound)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
@@ -351,7 +357,7 @@ struct ContentView: View {
                             self.resetGame()
                         }
                     }
-                    .opacity(0.0)
+                    .opacity(1.0)
                     
                     // continue button
                     VStack (spacing: 10.0) {
