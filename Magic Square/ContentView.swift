@@ -357,7 +357,7 @@ struct ContentView: View {
                             self.resetGame()
                         }
                     }
-                    .opacity(1.0)
+                    .opacity(0.0)
                     
                     // continue button
                     VStack (spacing: 10.0) {
