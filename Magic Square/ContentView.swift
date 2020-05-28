@@ -287,131 +287,146 @@ struct ContentView: View {
         return gsIsWinner ? colors[colorIndex] : bgColor
     }
     
-    var body : some View {
-        
-        return
-            ZStack {
-                VStack (spacing: 10.0) {
-                    // title
-                    VStack {
-                        Image("MerlinsMagicSquare")
-                            .resizable()
-                            .frame(width:(400*0.7), height: (135*0.7))
-                    }
-                    
-                    // score and stats
-                    HStack {
-                        Spacer()
-                        Text(getLevel(level: gsLevel)).padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
-                        Spacer()
-                        //Image(systemName: schemeSymbol )
-                        Text("Round \(gsRound)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
-                        Spacer()
-                        //Image(systemName: "triangle" )
-                        Text("Move \(gsMove)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
-                        Spacer()
-                    }.font(.footnote)
-                    
-                    // playfield
-                    ZStack {
-                        HStack (spacing: 2.0) {
-                            ForEach(0 ..< self.gridSize, id: \.self) { x in
-                                VStack (spacing: 2.0) {
-                                    ForEach(0 ..< self.gridSize, id: \.self) { y in
-                                        Button(action: {
-                                            self.flip(x, y)
-                                        }) {
-                                            Rectangle() // squares
-                                                .fill(self.gsBoxes[x+(y*self.gridSize)] ? self.fillColor : self.bgColor)
-                                                .border(self.fgColor, width: 3)
-                                                .frame(width: self.boxSize, height: self.boxSize)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        .blur(radius: self.gsIsWinner ? 30.0 : 0.0)
-                        // winner announcement
-                        VStack {
-                            Text("You Win!")
-                                .font(.largeTitle)
-                                .fontWeight(.black)
-                                .padding(.vertical, 30)
-                                .padding(.horizontal, 20)
-                                .background(Color.gold)
-                                .foregroundColor(fgColor)
-                                .border(fgColor, width: 3)
-                                .scaleEffect(1.5)
-                        }
-                        .opacity(self.gsIsWinner ? 0.9 : 0.0)
-                    }
-                    
-                    // cheater
-                    HStack {
-                        Button("Skip") {
-                            self.gsRound += 1
-                            self.nextRound()
-                        }
-                        Text("-")
-                        Button("Reset") {
-                            self.resetGame()
+    var splashScreen : some View {
+        ZStack {
+            Color.systemBackground.edgesIgnoringSafeArea(.all)
+            VStack {
+                Spacer()
+                VStack {
+                    Image("MerlinsMagicSquare")
+                        .resizable()
+                        .frame(width:(400*0.7), height: (135*0.7))
+                        .padding(.bottom, Screen.height/5)
+                    Button("SAB3R")
+                    {
+                        if let url = URL(string: "https://www.youtube.com/channel/UCcj5o_04z4960aRsq1RLHTQ") {
+                            UIApplication.shared.open(url)
                         }
                     }
-                    .opacity(0.0)
-                    
-                    // continue button
-                    VStack (spacing: 10.0) {
+                }
+                Spacer()
+                Button("Privacy Policy")
+                {
+                    if let url = URL(string: "https://raw.githubusercontent.com/AlfredBr/merlins-magic-square/master/PRIVACY.md") {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                print(" hide splash screen")
+                self.gsShowSplash = false
+                self.restoreGame()
+            }
+        }
+        .opacity(self.gsShowSplash ? 1.0 : 0.0)
+        .animation(.default)
+    }
+    
+    var continueButton : some View {
+        VStack (spacing: 10.0) {
+            Button(action: {
+                self.gsRound += 1
+                self.nextRound()
+            })
+            {
+                Text("Continue")
+                    .padding(.vertical, 5).padding(.horizontal, 8)
+                    .background(Color.blue)
+                    .foregroundColor(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 8.0))
+            }
+        }
+        .opacity(self.gsIsWinner ? 1.0 : 0.0) // hide until round is won
+        .animation(.default)
+    }
+    
+    var cheaterPanel : some View {
+        HStack {
+            Button("Skip") {
+                self.gsRound += 1
+                self.nextRound()
+            }
+            Text("-")
+            Button("Reset") {
+                self.resetGame()
+            }
+        }
+        .opacity(0.0)
+    }
+    
+    var winnerAnnouncement : some View {
+        VStack {
+            Text("You Win!")
+                .font(.largeTitle)
+                .fontWeight(.black)
+                .padding(.vertical, 30)
+                .padding(.horizontal, 20)
+                .background(Color.gold)
+                .foregroundColor(fgColor)
+                .border(fgColor, width: 3)
+                .scaleEffect(1.5)
+        }
+        .opacity(self.gsIsWinner ? 0.9 : 0.0)
+    }
+    
+    var playField : some View {
+        HStack (spacing: 2.0) {
+            ForEach(0 ..< self.gridSize, id: \.self) { x in
+                VStack (spacing: 2.0) {
+                    ForEach(0 ..< self.gridSize, id: \.self) { y in
                         Button(action: {
-                            self.gsRound += 1
-                            self.nextRound()
-                        })
-                        {
-                            Text("Continue")
-                                .padding(.vertical, 5).padding(.horizontal, 8)
-                                .background(Color.blue)
-                                .foregroundColor(Color.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 8.0))
+                            self.flip(x, y)
+                        }) {
+                            Rectangle() // squares
+                                .fill(self.gsBoxes[x+(y*self.gridSize)] ? self.fillColor : self.bgColor)
+                                .border(self.fgColor, width: 3)
+                                .frame(width: self.boxSize, height: self.boxSize)
                         }
                     }
-                    .opacity(self.gsIsWinner ? 1.0 : 0.0) // hide until round is won
-                    .animation(.default)
                 }
-                
-                // splash screen
+            }
+        }
+        .blur(radius: self.gsIsWinner ? 30.0 : 0.0)
+    }
+    
+    var scoreBoard : some View {
+        HStack {
+            Spacer()
+            Text(getLevel(level: gsLevel)).padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
+            Spacer()
+            //Image(systemName: schemeSymbol )
+            Text("Round \(gsRound)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
+            Spacer()
+            //Image(systemName: "triangle" )
+            Text("Move \(gsMove)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
+            Spacer()
+        }
+        .font(.footnote)
+    }
+    
+    var title : some View {
+        VStack {
+            Image("MerlinsMagicSquare")
+                .resizable()
+                .frame(width:(400*0.7), height: (135*0.7))
+        }
+    }
+    
+    var body : some View {
+        ZStack {
+            VStack (spacing: 10.0) {
+                title
+                scoreBoard
                 ZStack {
-                    Color.systemBackground.edgesIgnoringSafeArea(.all)
-                    VStack {                   
-                        Spacer()
-                        VStack {
-                            Image("MerlinsMagicSquare")
-                                .resizable()
-                                .frame(width:(400*0.7), height: (135*0.7))
-                                .padding(.bottom, Screen.height/5)
-                            Button("SAB3R")
-                            {
-                                if let url = URL(string: "https://www.youtube.com/channel/UCcj5o_04z4960aRsq1RLHTQ") {
-                                    UIApplication.shared.open(url)
-                                }
-                            }
-                        }
-                        Spacer()
-                        Button("Privacy Policy")
-                        {
-                            if let url = URL(string: "https://raw.githubusercontent.com/AlfredBr/merlins-magic-square/master/PRIVACY.md") {
-                                UIApplication.shared.open(url)
-                            }
-                        }
-                    }
-                }	
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        print(" hide splash screen")
-                        self.gsShowSplash = false
-                        self.restoreGame()
-                    }
+                    playField
+                    winnerAnnouncement
                 }
-                .opacity(self.gsShowSplash ? 1.0 : 0.0)
-                .animation(.default)
+                cheaterPanel
+                continueButton
+            }
+            splashScreen
         }
     }
 }
