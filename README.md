@@ -5,7 +5,7 @@
 Merlin contained many games and one of those games was a 3x3 version of [LightsOut](https://en.wikipedia.org/wiki/Lights_Out_(game)).
 
 This is my version of LightsOut.  It is my first SwiftUI application.  I wrote it with my 12 year old son.
-We wanted to learn iOS programming and do something fun during the COVID-19 self-quarantine.
+We wanted to learn iOS programming and do something fun together during the COVID-19 self-quarantine.
 
 We went from not owning (or even using) a Macintosh to a decent playable iOS/SwiftUI game in about 30 days!
 
