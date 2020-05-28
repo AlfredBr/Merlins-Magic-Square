@@ -193,7 +193,7 @@ struct ContentView: View {
     
     var isLastRoundOfLevel : Bool
     {
-        return gsRound == roundsInLevel
+        return gsRound >= roundsInLevel
     }
     
     var isGameOver : Bool
@@ -338,7 +338,7 @@ struct ContentView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8.0))
             }
         }
-        .opacity(self.gsIsWinner ? 1.0 : 0.0) // hide until round is won
+        .opacity(self.gsIsWinner && !self.isGameOver ? 1.0 : 0.0) // hide until round is won
         .animation(.default)
     }
     
@@ -368,7 +368,22 @@ struct ContentView: View {
                 .border(fgColor, width: 3)
                 .scaleEffect(1.5)
         }
-        .opacity(self.gsIsWinner ? 0.9 : 0.0)
+        .opacity(self.gsIsWinner && !self.isGameOver ? 0.9 : 0.0)
+    }
+
+    var gameOverAnnouncement : some View {
+        VStack {
+            Text("Game Over!")
+                .font(.largeTitle)
+                .fontWeight(.black)
+                .padding(.vertical, 30)
+                .padding(.horizontal, 20)
+                .background(Color.gold)
+                .foregroundColor(fgColor)
+                .border(fgColor, width: 3)
+                .scaleEffect(1.5)
+        }
+        .opacity(self.gsIsWinner && self.isGameOver ? 0.9 : 0.0)
     }
     
     var playField : some View {
@@ -422,6 +437,7 @@ struct ContentView: View {
                 ZStack {
                     playField
                     winnerAnnouncement
+                    gameOverAnnouncement
                 }
                 cheaterPanel
                 continueButton
