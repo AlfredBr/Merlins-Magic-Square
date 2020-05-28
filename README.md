@@ -10,5 +10,5 @@ We went from not owning (or even using) a Macintosh to a decent playable iOS/Swi
 
 You can read the rules of LightsOut here --> https://en.wikipedia.org/wiki/Lights_Out_(game)
 
-There are 7 levels in our version of Lights Out, from a 2x2 grid to a 8x8 grid.
+There are 8 levels in our version of Lights Out, from a 2x2 grid to a 8x8 grid.
 We can't get past level 6!
