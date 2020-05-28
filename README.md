@@ -14,4 +14,4 @@ Level 1 | Level 3 | Level 6
 <img alt="merlins-magic-square-level-3" src="https://raw.githubusercontent.com/AlfredBr/merlins-magic-square/master/MerlinsMagicSquare-Level2.png" /> | <img alt="merlins-magic-square-level-2" src="https://raw.githubusercontent.com/AlfredBr/merlins-magic-square/master/MerlinsMagicSquare-Level3.png" /> | <img alt="merlins-magic-square-level-6" src="https://raw.githubusercontent.com/AlfredBr/merlins-magic-square/master/MerlinsMagicSquare-Level6.png" />
 
 There are 8 levels in our version of Lights Out, from a 2x2 grid to a 9x9 grid.
-We can't get past the 7x7 grid!
+We can't get past the 7x7 grid! :smile:
