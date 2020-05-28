@@ -1,6 +1,8 @@
 # merlins-magic-square
 
-[Merlin](http://www.theelectronicwizard.com) was a toy made by Parker Bros in the 1970's.  It contained many games and one of those games was a 3x3 version of [LightsOut](https://en.wikipedia.org/wiki/Lights_Out_(game)) on it's LED "screen".
+[Merlin](http://www.theelectronicwizard.com) was an electronic toy made by Parker Bros in the 1970's.  
+
+Merlin contained many games and one of those games was a 3x3 version of [LightsOut](https://en.wikipedia.org/wiki/Lights_Out_(game)).
 
 This is my version of LightsOut.  It is my first SwiftUI application.  I wrote it with my 12 year old son.
 We wanted to learn iOS programming and do something fun during the COVID-19 self-quarantine.
