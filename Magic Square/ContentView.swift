@@ -215,6 +215,7 @@ struct ContentView: View {
         randomizeBoard()
 
         gsMove = 0
+        saveGame()
     }
     
     func flipN(_ x: Int, _ y: Int)
