@@ -22,7 +22,7 @@ struct ContentView: View {
     
     @State private var resetRequestCount : Int = 1    
     @State private var gsLevel : Int = 1
-    @State private var gsMove : Int = 1
+    @State private var gsMove : Int = 0
     @State private var gsRound : Int = 1
     @State private var gsBoxes = [Bool](repeating: false, count: 81)
     @State private var gsIsWinner = false
@@ -158,7 +158,7 @@ struct ContentView: View {
     {
         gsRound = 1
         gsLevel = 1
-        gsMove = 1
+        gsMove = 0
         resetBoard()
     }
     
@@ -214,7 +214,7 @@ struct ContentView: View {
         resetBoard()
         randomizeBoard()
 
-        gsMove = 1
+        gsMove = 0
     }
     
     func flipN(_ x: Int, _ y: Int)
@@ -412,7 +412,7 @@ struct ContentView: View {
             Text("Round \(gsRound)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
             Spacer()
             //Image(systemName: "triangle" )
-            Text("Move \(gsMove)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
+            Text("Moves \(gsMove)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
             Spacer()
         }
         .font(.footnote)
