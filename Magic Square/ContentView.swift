@@ -136,6 +136,8 @@ struct ContentView: View {
     
     func randomizeBoard()
     {
+        resetBoard()
+        
         print("randomizeBoard()")
         
         if gsRound > 1
