@@ -4,7 +4,7 @@
 
 Merlin contained many games and one of those games was a 3x3 version of [Lights Out](https://en.wikipedia.org/wiki/Lights_Out_(game)) called "Magic Square".
 
-This is my version of LightsOut/Magic Square.  It is my first SwiftUI application.  I wrote it with my 12 year old son.
+This is my version of LightsOut/Magic Square and it's my first SwiftUI application.  I wrote it with my 12 year old son.
 We wanted to learn iOS programming and do something fun together during the COVID-19 self-quarantine.
 
 We went from not owning (or even using) a Macintosh to a decent playable iOS/SwiftUI game in about 30 days!

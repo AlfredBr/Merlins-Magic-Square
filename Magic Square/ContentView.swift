@@ -10,20 +10,6 @@
 
 import SwiftUI
 
-struct LaunchView: View {
-    var body: some View {
-        ZStack {
-            Color.primary.edgesIgnoringSafeArea(.all)
-            VStack {
-                Image("MerlinsMagicSquare")
-                    .resizable()
-                    .frame(width:(400*0.9), height: (135*0.9))
-                Text("Nedac5")
-            }
-        }
-    }
-}
-
 struct ContentView: View {
     
     @Environment(\.colorScheme) var colorScheme
@@ -34,8 +20,9 @@ struct ContentView: View {
     
     var boxSizes = [CGFloat](repeating: -1.0, count: 9)
     
+    @State private var resetRequestCount : Int = 1    
     @State private var gsLevel : Int = 1
-    @State private var gsMove : Int = 1
+    @State private var gsMove : Int = 0
     @State private var gsRound : Int = 1
     @State private var gsBoxes = [Bool](repeating: false, count: 81)
     @State private var gsIsWinner = false
@@ -171,7 +158,7 @@ struct ContentView: View {
     {
         gsRound = 1
         gsLevel = 1
-        gsMove = 1
+        gsMove = 0
         resetBoard()
     }
     
@@ -227,7 +214,8 @@ struct ContentView: View {
         resetBoard()
         randomizeBoard()
 
-        gsMove = 1
+        gsMove = 0
+        saveGame()
     }
     
     func flipN(_ x: Int, _ y: Int)
@@ -257,6 +245,16 @@ struct ContentView: View {
         checkForWinner()
     }
     
+    func resetRequest()
+    {
+        resetRequestCount += 1
+        if (resetRequestCount > 10)
+        {
+            resetRequestCount = 0;
+            resetGame()
+        }
+    }
+
     var schemeSymbol : String
     {
         return String((colorScheme == .dark) ? "moon.stars" : "sun.max")
@@ -415,7 +413,7 @@ struct ContentView: View {
             Text("Round \(gsRound)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
             Spacer()
             //Image(systemName: "triangle" )
-            Text("Move \(gsMove)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
+            Text("Moves \(gsMove)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
             Spacer()
         }
         .font(.footnote)
@@ -423,9 +421,17 @@ struct ContentView: View {
     
     var title : some View {
         VStack {
-            Image("MerlinsMagicSquare")
-                .resizable()
-                .frame(width:(400*0.7), height: (135*0.7))
+            Button(action:
+            {
+                self.resetRequest()
+            })
+            {
+                Image("MerlinsMagicSquare")
+                    .resizable()
+                    .frame(width:(400*0.5), height: (135*0.5))
+            }
+            .foregroundColor(Color.red)
+            Spacer().frame(height:50)
         }
     }
     
@@ -450,6 +456,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-        //LaunchView()
     }
 }
