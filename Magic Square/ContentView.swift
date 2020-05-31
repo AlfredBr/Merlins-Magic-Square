@@ -98,7 +98,7 @@ struct ContentView: View {
     {
         print("saveGame()")
         UserDefaults.standard.set(gsLevel, forKey: Key.gameLevelNumber)
-        UserDefaults.standard.set(gsMove, forKey: Key.gameMoveNumber)
+        UserDefaults.standard.set(gsMove,  forKey: Key.gameMoveNumber)
         UserDefaults.standard.set(gsRound, forKey: Key.gameRoundNumber)
         UserDefaults.standard.set(gsBoxes, forKey: Key.gameBoxes)
     }
