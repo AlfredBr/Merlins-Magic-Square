@@ -10,8 +10,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
+struct ContentView: View 
+{    
     @Environment(\.colorScheme) var colorScheme
     
     let colors = Color.collection.shuffled()
@@ -28,38 +28,39 @@ struct ContentView: View {
     @State private var gsIsWinner = false
     @State private var gsShowSplash = true
     
-    init()
+    init() 
     {
         print("init()")
         computeBoxSizes()
     }
     
-    func restoreGame()
+    func restoreGame() 
     {
         loadGame()
         printState()
         printGrid()
     }
     
-    mutating func computeBoxSizes()
+    mutating func computeBoxSizes() 
     {
-        for i in 2 ..< 10 {
+        for i in 2 ..< 10 
+        {
             let boxSize = round((Screen.width - CGFloat(10+i)) / CGFloat(i))
             boxSizes[i-1] = CGFloat(boxSize)
         }
     }
     
-    var boxSize : CGFloat
+    var boxSize : CGFloat 
     {
         return CGFloat(boxSizes[gsLevel])
     }
     
-    var gridSize : Int
+    var gridSize : Int 
     {
         return gsLevel + 1
     }
     
-    func printState()
+    func printState() 
     {
         print(" Move     = \(gsMove)")
         print(" Round    = \(gsRound) of \(roundsInLevel)")
@@ -68,11 +69,13 @@ struct ContentView: View {
         print(" gridSize = \(gridSize)x\(gridSize) [\(boxSize)]")
     }
     
-    func printGrid()
+    func printGrid() 
     {
         var s = "printGrid() [ "
-        for y in 0 ..< gridSize {
-            for x in 0 ..< gridSize {
+        for y in 0 ..< gridSize 
+        {
+            for x in 0 ..< gridSize 
+            {
                 let p = x + (y * gridSize)
                 s += gsBoxes[p] ? "X" : "_"
             }
@@ -81,7 +84,7 @@ struct ContentView: View {
         print("\(s)]")
     }
     
-    func saveGame()
+    func saveGame() 
     {
         print("saveGame()")
         UserDefaults.standard.set(gsLevel, forKey: Key.gameLevelNumber)
@@ -90,7 +93,7 @@ struct ContentView: View {
         UserDefaults.standard.set(gsBoxes, forKey: Key.gameBoxes)
     }
     
-    func loadGame()
+    func loadGame() 
     {
         print("loadGame()")
         gsLevel = max(1, UserDefaults.standard.integer(forKey: Key.gameLevelNumber))
@@ -99,11 +102,11 @@ struct ContentView: View {
         gsBoxes = UserDefaults.standard.array(forKey: Key.gameBoxes) as? [Bool] ?? [Bool](repeating: false, count: 81)
     }
     
-    func checkForWinner()
+    func checkForWinner() 
     {
         var isWinner = true
         
-        for i in 0 ..< gridSize * gridSize
+        for i in 0 ..< gridSize * gridSize 
         {
             let box = gsBoxes[i]
             if box == false
@@ -112,7 +115,7 @@ struct ContentView: View {
             }
         }
         
-        if (isWinner)
+        if (isWinner) 
         {
             gsIsWinner = true
             print ("Winner!")
@@ -122,28 +125,29 @@ struct ContentView: View {
         saveGame()
     }
     
-    func resetBoard()
+    func resetBoard() 
     {
         print("resetBoard()")
         
         gsIsWinner = false
         
-        for p in 0 ..< gridSize * gridSize
+        for p in 0 ..< gridSize * gridSize 
         {
             gsBoxes[p] = false
         }
     }
     
-    func randomizeBoard()
+    func randomizeBoard() 
     {
         resetBoard()
-        
+
         print("randomizeBoard()")
         
-        if gsRound > 1
+        if gsRound > 1 
         {
             // randomize game when gameRound > 1
-            for _ in 0 ..< 2 {
+            for _ in 0 ..< 2 
+            {
                 let rx = Int.random(in: 0 ..< gridSize)
                 let ry = Int.random(in: 0 ..< gridSize)
                 gsMove = 0
@@ -156,7 +160,7 @@ struct ContentView: View {
         }
     }
     
-    func resetGame()
+    func resetGame() 
     {
         gsRound = 1
         gsLevel = 1
@@ -164,7 +168,7 @@ struct ContentView: View {
         resetBoard()
     }
     
-    func getLevel(level: Int) -> String
+    func getLevel(_ level: Int) -> String
     {
         let lvl = level+1
         return "\(lvl)x\(lvl)"
@@ -287,19 +291,24 @@ struct ContentView: View {
         return gsIsWinner ? colors[colorIndex] : bgColor
     }
     
-    var splashScreen : some View {
-        ZStack {
+    var splashScreen : some View 
+    {
+        ZStack 
+        {
             Color.systemBackground.edgesIgnoringSafeArea(.all)
-            VStack {
+            VStack 
+            {
                 Spacer()
-                VStack {
+                VStack 
+                {
                     Image("MerlinsMagicSquare")
                         .resizable()
                         .frame(width:(400*0.7), height: (135*0.7))
                         .padding(.bottom, Screen.height/5)
                     Button("SAB3R")
                     {
-                        if let url = URL(string: "https://www.youtube.com/channel/UCcj5o_04z4960aRsq1RLHTQ") {
+                        if let url = URL(string: "https://www.youtube.com/channel/UCcj5o_04z4960aRsq1RLHTQ") 
+                        {
                             UIApplication.shared.open(url)
                         }
                     }
@@ -307,14 +316,17 @@ struct ContentView: View {
                 Spacer()
                 Button("Privacy Policy")
                 {
-                    if let url = URL(string: "https://raw.githubusercontent.com/AlfredBr/merlins-magic-square/master/PRIVACY.md") {
+                    if let url = URL(string: "https://raw.githubusercontent.com/AlfredBr/merlins-magic-square/master/PRIVACY.md") 
+                    {
                         UIApplication.shared.open(url)
                     }
                 }
             }
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        .onAppear 
+        {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) 
+            {
                 print(" hide splash screen")
                 self.gsShowSplash = false
                 self.restoreGame()
@@ -324,12 +336,17 @@ struct ContentView: View {
         .animation(.default)
     }
     
-    var continueButton : some View {
-        VStack (spacing: 10.0) {
-            Button(action: {
-                self.gsRound += 1
-                self.nextRound()
-            })
+    var continueButton : some View 
+    {
+        VStack (spacing: 10.0) 
+        {
+            Button(
+                action: 
+                {
+                    self.gsRound += 1
+                    self.nextRound()
+                }
+            )
             {
                 Text("Continue")
                     .padding(.vertical, 5).padding(.horizontal, 8)
@@ -342,37 +359,51 @@ struct ContentView: View {
         .animation(.default)
     }
     
-    var cheaterPanel : some View {
-        HStack {
-            Button("Skip") {
+    var cheaterPanel : some View 
+    {
+        HStack 
+        {
+            Button("Skip") 
+            {
                 self.gsRound += 1
                 self.nextRound()
             }
             Text("-")
-            Button("Reset") {
+            Button("Reset") 
+            {
                 self.resetGame()
             }
         }
         .opacity(0.0)
     }
     
-    var winnerAnnouncement : some View {
-        VStack {
-            Text("You Win!")
-                .font(.largeTitle)
-                .fontWeight(.black)
-                .padding(.vertical, 30)
-                .padding(.horizontal, 20)
-                .background(Color.gold)
-                .foregroundColor(fgColor)
-                .border(fgColor, width: 3)
-                .scaleEffect(1.5)
+    var winnerAnnouncement : some View 
+    {
+        VStack 
+        {
+            RoundedRectangle(cornerRadius: 12, style: .circular)
+                .stroke(self.fgColor, lineWidth: 4)
+                .frame(width: 380, height: 160)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12, style: .circular)
+                        .fill(self.isLastRoundOfLevel ? Color.gold : Color.silver)
+                        .frame(width: 378, height:  158)
+                        .overlay(
+                            Text(self.isLastRoundOfLevel ? "\(self.getLevel(self.gsLevel))\nCompleted!" : "Round \(self.gsRound)\nCompleted!")
+                                .font(.largeTitle)
+                                .fontWeight(.black)
+                                .scaleEffect(1.5)
+                                .foregroundColor(fgColor)
+                                .multilineTextAlignment(.center))
+                )
         }
         .opacity(self.gsIsWinner && !self.isGameOver ? 0.9 : 0.0)
     }
 
-    var gameOverAnnouncement : some View {
-        VStack {
+    var gameOverAnnouncement : some View 
+    {
+        VStack 
+        {
             Text("Game Over!")
                 .font(.largeTitle)
                 .fontWeight(.black)
@@ -386,18 +417,50 @@ struct ContentView: View {
         .opacity(self.gsIsWinner && self.isGameOver ? 0.9 : 0.0)
     }
     
-    var playField : some View {
-        HStack (spacing: 2.0) {
-            ForEach(0 ..< self.gridSize, id: \.self) { x in
-                VStack (spacing: 2.0) {
-                    ForEach(0 ..< self.gridSize, id: \.self) { y in
-                        Button(action: {
-                            self.flip(x, y)
-                        }) {
-                            Rectangle() // squares
-                                .fill(self.gsBoxes[x+(y*self.gridSize)] ? self.fillColor : self.bgColor)
-                                .border(self.fgColor, width: 3)
-                                .frame(width: self.boxSize, height: self.boxSize)
+    var playField : some View 
+    {
+        HStack (spacing: 2.0) 
+        {
+            ForEach(0 ..< self.gridSize, id: \.self) 
+            { 
+                x in
+                VStack (spacing: 2.0) 
+                {
+                    ForEach(0 ..< self.gridSize, id: \.self) 
+                    { 
+                        y in
+                        Button(
+                            action: 
+                            {
+                                self.flip(x, y)
+                            }
+                        ) 
+                        {
+                            if self.isLastRoundOfLevel
+                            {
+                                Circle()
+                                    .stroke(self.fgColor, lineWidth: 3)
+                                    .frame(width: self.boxSize-3, height: self.boxSize-3)
+                                .overlay(Circle()
+                                    .fill(self.gsBoxes[x+(y*self.gridSize)] ? self.fillColor : self.bgColor))
+                                .padding(3)
+                            }
+                            else
+                            {
+                                RoundedRectangle(cornerRadius: 6.00, style: .circular)
+                                    .stroke(self.fgColor, lineWidth: 4)
+                                    .frame(width: self.boxSize-4, height: self.boxSize-4)
+                                .overlay(RoundedRectangle(cornerRadius: 6.00, style: .circular)
+                                    .fill(self.gsBoxes[x+(y*self.gridSize)] ? self.fillColor : self.bgColor))
+                                .padding(2)
+                            }
+//                          else
+//                          {
+//                              Rectangle()
+//                                  .fill(self.gsBoxes[x+(y*self.gridSize)] ? self.fillColor : self.bgColor)
+//                                  .border(self.fgColor, width: 3)
+//                                  .frame(width: self.boxSize, height: self.boxSize)
+//                          }
                         }
                     }
                 }
@@ -406,10 +469,12 @@ struct ContentView: View {
         .blur(radius: self.gsIsWinner ? 30.0 : 0.0)
     }
     
-    var scoreBoard : some View {
-        HStack {
+    var scoreBoard : some View 
+    {
+        HStack 
+        {
             Spacer()
-            Text(getLevel(level: gsLevel)).padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
+            Text(getLevel(gsLevel)).padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
             Spacer()
             //Image(systemName: schemeSymbol )
             Text("Round \(gsRound)").padding(5).padding(.horizontal, 8).background(Color.silver).clipShape(Capsule())
@@ -421,12 +486,16 @@ struct ContentView: View {
         .font(.footnote)
     }
     
-    var title : some View {
-        VStack {
-            Button(action:
-            {
-                self.resetRequest()
-            })
+    var title : some View 
+    {
+        VStack 
+        {
+            Button(
+                action:
+                {
+                    self.resetRequest()
+                }
+            )
             {
                 Image("MerlinsMagicSquare")
                     .resizable()
@@ -437,12 +506,16 @@ struct ContentView: View {
         }
     }
     
-    var body : some View {
-        ZStack {
-            VStack (spacing: 10.0) {
+    var body : some View 
+    {
+        ZStack 
+        {
+            VStack (spacing: 10.0) 
+            {
                 title
                 scoreBoard
-                ZStack {
+                ZStack 
+                {
                     playField
                     winnerAnnouncement
                     gameOverAnnouncement
@@ -455,8 +528,10 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
+struct ContentView_Previews: PreviewProvider 
+{
+    static var previews: some View 
+    {
         ContentView()
     }
 }

@@ -21,7 +21,26 @@ extension Color
     static var navy    : Color { return Color(.sRGB, red: 0.0, green: 0.0, blue: 0.5) }
     static var systemBackground : Color { return Color(UIColor.systemBackground) }
     
-    static let collection = [ Color.orange, Color.silver, Color.pink, Color.purple, Color.green, Color.blue, Color.gray,
-                              Color.red, Color.yellow, Color.cyan, Color.magenta, Color.olive, Color.lime, Color.maroon,
-                              Color.teal, Color.gold]
+    static let collection = [ 
+        // -- stock colors
+        //Color.black,
+        //Color.white,        
+        Color.gray,
+        Color.red, 
+        Color.green, 
+        Color.blue, 
+        Color.orange, 
+        Color.yellow, 
+        Color.pink, 
+        Color.purple, 
+        // -- custom colors
+        Color.cyan, 
+        Color.magenta, 
+        Color.olive, 
+        Color.lime, 
+        Color.maroon,
+        Color.teal, 
+        Color.silver, 
+        Color.gold 
+    ]
 }
