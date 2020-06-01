@@ -440,10 +440,10 @@ struct ContentView: View
                             {
                                 Circle()
                                     .stroke(self.fgColor, lineWidth: 3)
-                                    .frame(width: self.boxSize-3, height: self.boxSize-3)
+                                    .frame(width: self.boxSize-5, height: self.boxSize-5)
                                 .overlay(Circle()
                                     .fill(self.gsBoxes[x+(y*self.gridSize)] ? self.fillColor : self.bgColor))
-                                .padding(3)
+                                .padding(2)
                             }
                             else
                             {
