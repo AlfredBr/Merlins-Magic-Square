@@ -436,31 +436,13 @@ struct ContentView: View
                             }
                         ) 
                         {
-                            if self.isLastRoundOfLevel
-                            {
-                                Circle()
-                                    .stroke(self.fgColor, lineWidth: 3)
-                                    .frame(width: self.boxSize-5, height: self.boxSize-5)
-                                .overlay(Circle()
-                                    .fill(self.gsBoxes[x+(y*self.gridSize)] ? self.fillColor : self.bgColor))
-                                .padding(2)
-                            }
-                            else
-                            {
-                                RoundedRectangle(cornerRadius: 6.00, style: .circular)
-                                    .stroke(self.fgColor, lineWidth: 4)
-                                    .frame(width: self.boxSize-4, height: self.boxSize-4)
-                                .overlay(RoundedRectangle(cornerRadius: 6.00, style: .circular)
-                                    .fill(self.gsBoxes[x+(y*self.gridSize)] ? self.fillColor : self.bgColor))
-                                .padding(2)
-                            }
-//                          else
-//                          {
-//                              Rectangle()
-//                                  .fill(self.gsBoxes[x+(y*self.gridSize)] ? self.fillColor : self.bgColor)
-//                                  .border(self.fgColor, width: 3)
-//                                  .frame(width: self.boxSize, height: self.boxSize)
-//                          }
+                            RoundedRectangle(cornerRadius: 6.00, style: .circular)
+                                .stroke(self.fgColor, lineWidth: 4)
+                                .frame(width: self.boxSize-4, height: self.boxSize-4)
+                            .overlay(RoundedRectangle(cornerRadius: 6.00, style: .circular)
+                                .fill(self.gsBoxes[x+(y*self.gridSize)] ? self.fillColor : self.bgColor))
+                            .padding(2)
+                            
                         }
                     }
                 }
