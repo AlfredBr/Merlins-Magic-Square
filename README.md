@@ -7,7 +7,7 @@ Merlin contained many games and one of those games was a 3x3 version of [Lights 
 This is my version of Lights Out/Magic Square and it's my first SwiftUI application.  I wrote it with my 12 year old son.
 We wanted to learn iOS programming and do something fun together during the COVID-19 self-quarantine.
 
-We went from not owning (or even using) a Macintosh to a decent playable iOS/SwiftUI game in about 30 days!
+We went from not owning (or even using) a Macintosh, not knowing a lick of Swift and barely remembering how to play this game to a decent playable iOS/SwiftUI version of the game in about 30 days!  We are really proud of ourselves!  And it was a lot of fun!
 
 2x2 | 4x4 | 7x7
 -- | -- | --
@@ -17,3 +17,5 @@ We went from not owning (or even using) a Macintosh to a decent playable iOS/Swi
 There are 8 levels in our version of Lights Out, from a 2x2 grid to a 9x9 grid.  Some levels are very easy and others are extremely hard.
 
 We can't get past the 7x7 grid! :smile:
+
+![Made with Swift](https://forthebadge.com/images/badges/made-with-swift.svg)
