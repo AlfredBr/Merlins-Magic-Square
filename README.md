@@ -1,4 +1,4 @@
-# merlins-magic-square
+# Merlins-Magic-Square
 
 [Merlin](http://www.theelectronicwizard.com) was an electronic toy made by Parker Bros in the 1970's.  
 
@@ -18,4 +18,3 @@ There are 8 levels in our version of Lights Out, from a 2x2 grid to a 9x9 grid. 
 
 We can't get past the 7x7 grid! :smile:
 
-![Made with Swift](https://forthebadge.com/images/badges/made-with-swift.svg)
