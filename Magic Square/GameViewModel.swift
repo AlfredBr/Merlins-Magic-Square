@@ -97,10 +97,10 @@ class GameViewModel {
     func randomizeBoard() {
         resetBoard()
         guard round > 1 else { return }
+        move = 0
         for _ in 0 ..< 2 {
             let rx = Int.random(in: 0 ..< gridSize)
             let ry = Int.random(in: 0 ..< gridSize)
-            move = 0
             flip(rx, ry)
         }
     }
