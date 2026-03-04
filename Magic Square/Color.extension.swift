@@ -12,7 +12,6 @@ extension Color {
     static let lime    = Color(.sRGB, red: 0.0, green: 1.0, blue: 0.0)
     static let teal    = Color(.sRGB, red: 0.0, green: 0.5, blue: 0.5)
     static let gold    = Color(.sRGB, red: 0.8, green: 0.6, blue: 0.1)
-    static let navy    = Color(.sRGB, red: 0.0, green: 0.0, blue: 0.5)
 
     static let collection: [Color] = [
         .gray, .red, .green, .blue, .orange, .yellow, .pink, .purple,
