@@ -7,21 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7382147A24437449002205E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382147924437449002205E8 /* AppDelegate.swift */; };
-		7382147C24437449002205E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382147B24437449002205E8 /* SceneDelegate.swift */; };
 		7382147E24437449002205E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382147D24437449002205E8 /* ContentView.swift */; };
 		738214802443744D002205E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7382147F2443744D002205E8 /* Assets.xcassets */; };
 		738214832443744D002205E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 738214822443744D002205E8 /* Preview Assets.xcassets */; };
 		738214862443744D002205E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 738214842443744D002205E8 /* LaunchScreen.storyboard */; };
 		73E1B3B12446AA7600B12EDE /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E1B3B02446AA7500B12EDE /* GameState.swift */; };
 		73E1B3B32446AF1F00B12EDE /* Color.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E1B3B22446AF1F00B12EDE /* Color.extension.swift */; };
-		73E1B3B7244CB8AE00B12EDE /* Screen.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E1B3B6244CB8AE00B12EDE /* Screen.extension.swift */; };
+		AA00000000000000000000002 /* MagicSquareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000000001 /* MagicSquareApp.swift */; };
+		AA00000000000000000000004 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000000003 /* GameViewModel.swift */; };
+		AA00000000000000000000007 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000000006 /* SplashView.swift */; };
+		AA00000000000000000000009 /* ScoreBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000000000008 /* ScoreBoardView.swift */; };
+		AA0000000000000000000000B /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000000A /* GridView.swift */; };
+		AA0000000000000000000000D /* WinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000000C /* WinnerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7382147624437449002205E8 /* Magic Square.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Square.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7382147924437449002205E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7382147B24437449002205E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7382147D24437449002205E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7382147F2443744D002205E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		738214822443744D002205E8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -29,7 +30,13 @@
 		738214872443744D002205E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73E1B3B02446AA7500B12EDE /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		73E1B3B22446AF1F00B12EDE /* Color.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.extension.swift; sourceTree = "<group>"; };
-		73E1B3B6244CB8AE00B12EDE /* Screen.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.extension.swift; sourceTree = "<group>"; };
+		AA00000000000000000000001 /* MagicSquareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicSquareApp.swift; sourceTree = "<group>"; };
+		AA00000000000000000000003 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		AA00000000000000000000005 /* Views */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Views; sourceTree = "<group>"; };
+		AA00000000000000000000006 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		AA00000000000000000000008 /* ScoreBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardView.swift; sourceTree = "<group>"; };
+		AA0000000000000000000000A /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		AA0000000000000000000000C /* WinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,16 +69,16 @@
 		7382147824437449002205E8 /* Magic Square */ = {
 			isa = PBXGroup;
 			children = (
-				7382147924437449002205E8 /* AppDelegate.swift */,
-				7382147B24437449002205E8 /* SceneDelegate.swift */,
+				AA00000000000000000000001 /* MagicSquareApp.swift */,
+				AA00000000000000000000003 /* GameViewModel.swift */,
 				7382147D24437449002205E8 /* ContentView.swift */,
+				AA00000000000000000000005 /* Views */,
 				7382147F2443744D002205E8 /* Assets.xcassets */,
 				738214842443744D002205E8 /* LaunchScreen.storyboard */,
 				738214872443744D002205E8 /* Info.plist */,
 				738214812443744D002205E8 /* Preview Content */,
 				73E1B3B02446AA7500B12EDE /* GameState.swift */,
 				73E1B3B22446AF1F00B12EDE /* Color.extension.swift */,
-				73E1B3B6244CB8AE00B12EDE /* Screen.extension.swift */,
 			);
 			path = "Magic Square";
 			sourceTree = "<group>";
@@ -82,6 +89,17 @@
 				738214822443744D002205E8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AA00000000000000000000005 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA00000000000000000000006 /* SplashView.swift */,
+				AA00000000000000000000008 /* ScoreBoardView.swift */,
+				AA0000000000000000000000A /* GridView.swift */,
+				AA0000000000000000000000C /* WinnerView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,12 +173,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73E1B3B7244CB8AE00B12EDE /* Screen.extension.swift in Sources */,
-				7382147A24437449002205E8 /* AppDelegate.swift in Sources */,
+				AA00000000000000000000002 /* MagicSquareApp.swift in Sources */,
+				AA00000000000000000000004 /* GameViewModel.swift in Sources */,
 				73E1B3B12446AA7600B12EDE /* GameState.swift in Sources */,
-				7382147C24437449002205E8 /* SceneDelegate.swift in Sources */,
 				73E1B3B32446AF1F00B12EDE /* Color.extension.swift in Sources */,
 				7382147E24437449002205E8 /* ContentView.swift in Sources */,
+				AA00000000000000000000007 /* SplashView.swift in Sources */,
+				AA00000000000000000000009 /* ScoreBoardView.swift in Sources */,
+				AA0000000000000000000000B /* GridView.swift in Sources */,
+				AA0000000000000000000000D /* WinnerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +249,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -282,7 +303,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -301,7 +322,7 @@
 				DEVELOPMENT_TEAM = G3HR673UBP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Magic Square/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,7 +344,7 @@
 				DEVELOPMENT_TEAM = G3HR673UBP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Magic Square/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
