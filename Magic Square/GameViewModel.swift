@@ -81,6 +81,7 @@ class GameViewModel {
 
     func nextRound() {
         guard !isGameOver else { return }
+        round += 1
         if isLevelOver {
             level += 1
             round = 1

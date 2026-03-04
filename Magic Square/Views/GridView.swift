@@ -26,9 +26,7 @@ struct GridView: View {
                                 .frame(width: cellSize, height: cellSize)
                                 .animation(.spring(response: 0.25, dampingFraction: 0.65), value: isLit)
                                 .onTapGesture {
-                                    withAnimation(.spring(response: 0.25, dampingFraction: 0.65)) {
-                                        vm.flip(x, y)
-                                    }
+                                    vm.flip(x, y)
                                 }
                                 .accessibilityLabel("Row \(y + 1), Column \(x + 1), \(isLit ? "lit" : "unlit")")
                                 .accessibilityAddTraits(.isButton)

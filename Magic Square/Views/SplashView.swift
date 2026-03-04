@@ -32,8 +32,8 @@ struct SplashView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 withAnimation(.easeInOut(duration: 0.4)) {
                     vm.showSplash = false
+                    vm.restoreGame()
                 }
-                vm.restoreGame()
             }
         }
     }

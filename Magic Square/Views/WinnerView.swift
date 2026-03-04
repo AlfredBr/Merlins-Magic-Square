@@ -30,7 +30,6 @@ struct WinnerView: View {
 
             Button {
                 withAnimation(.spring) {
-                    vm.round += 1
                     vm.nextRound()
                 }
             } label: {
@@ -62,7 +61,7 @@ struct WinnerView: View {
                 .font(.system(size: 48, weight: .black, design: .rounded))
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.white)
-            Text("You completed all 8 levels!")
+            Text("You completed all \(vm.maxGameLevel) levels!")
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.85))
             Button {
