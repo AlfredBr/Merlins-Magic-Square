@@ -1,5 +1,7 @@
 # Merlins-Magic-Square
 
+### Update!  We started in 2020 and now 6 years later we modernized it with a lot of help from Claude Code.
+
 [Merlin](http://www.theelectronicwizard.com) was an electronic toy made by Parker Bros in the 1970's.  
 
 Merlin contained many games and one of those games was a 3x3 version of [Lights Out](https://en.wikipedia.org/wiki/Lights_Out_(game)) called "Magic Square".
