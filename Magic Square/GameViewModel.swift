@@ -35,17 +35,27 @@ class GameViewModel {
     var isLastRoundOfLevel: Bool { round >= roundsInLevel }
     var isGameOver: Bool { level >= maxGameLevel }
 
+    // Stable shuffle per-session so fillColor doesn't flicker on every redraw
+    private let shuffledColors = Color.collection.shuffled()
+
     var fillColor: Color {
         let colorIndex = max(0, round - 1) % colors.count
         return isLastRoundOfLevel
-            ? colors.shuffled()[colorIndex]
+            ? shuffledColors[colorIndex]
             : colors[colorIndex]
     }
 
-    func levelLabel() -> String {
+    var winnerColor: Color {
+        let colorIndex = max(0, level - 1) % colors.count
+        return isWinner ? colors[colorIndex] : Color(.systemBackground)
+    }
+
+    var levelLabel: String {
         let n = level + 1
         return "\(n)×\(n)"
     }
+
+
 
     // MARK: - Game actions
     func flip(_ x: Int, _ y: Int) {
