@@ -28,6 +28,7 @@ class GameViewModel {
     var showSplash = true
     var timeRemaining: Double = 20
     var timerIsActive: Bool = false
+    var resetCount: Int = 0       // increments on every board scramble; views observe for flash
 
     // MARK: - Computed
     var gridSize: Int { level + 1 }
@@ -137,6 +138,7 @@ class GameViewModel {
 
     func randomizeBoard() {
         resetBoard()
+        resetCount += 1
         guard round > 1 else { return }
         move = 0
         for _ in 0 ..< 2 {
