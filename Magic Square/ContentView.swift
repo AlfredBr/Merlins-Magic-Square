@@ -6,6 +6,9 @@ import SwiftUI
 struct ContentView: View {
     @Environment(GameViewModel.self) private var vm
     @State private var resetTapCount = 0
+    @State private var showResetConfirmation = false
+
+    private let ticker = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack {
@@ -27,11 +30,15 @@ struct ContentView: View {
         .animation(.easeInOut(duration: 0.4), value: vm.showSplash)
         .sensoryFeedback(.impact(weight: .light), trigger: vm.move)
         .sensoryFeedback(.success, trigger: vm.isWinner)
+        .onReceive(ticker) { _ in
+            guard !vm.showSplash else { return }
+            vm.tickTimer()
+        }
     }
 
     private var mainContent: some View {
         VStack(spacing: 16) {
-            titleView
+            titleBar
             ScoreBoardView()
             ZStack {
                 GridView()
@@ -41,6 +48,16 @@ struct ContentView: View {
             Spacer()
         }
         .padding(.top)
+    }
+
+    private var titleBar: some View {
+        HStack {
+            Spacer()
+            titleView
+            Spacer()
+            resetButton
+                .padding(.trailing, 16)
+        }
     }
 
     private var titleView: some View {
@@ -61,6 +78,28 @@ struct ContentView: View {
             }
         }
         .buttonStyle(.plain)
+    }
+
+    private var resetButton: some View {
+        Button {
+            showResetConfirmation = true
+        } label: {
+            Image(systemName: "arrow.counterclockwise.circle")
+                .font(.title2)
+                .foregroundStyle(.secondary)
+        }
+        .confirmationDialog(
+            "Reset Game?",
+            isPresented: $showResetConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Reset", role: .destructive) {
+                withAnimation(.spring) { vm.resetGame() }
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This will return you to Level 1, Round 1.")
+        }
     }
 }
 
