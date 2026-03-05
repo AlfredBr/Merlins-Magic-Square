@@ -29,6 +29,7 @@ class GameViewModel {
     var timeRemaining: Double = 20
     var timerIsActive: Bool = false
     var resetCount: Int = 0       // increments on every board scramble; views observe for flash
+    var timerExpiredColorOffset: Int = 0  // advances tile color on each timer expiry
 
     // MARK: - Computed
     var gridSize: Int { level + 1 }
@@ -53,7 +54,7 @@ class GameViewModel {
     private let shuffledColors = Color.collection.shuffled()
 
     var fillColor: Color {
-        let colorIndex = max(0, round - 1) % colors.count
+        let colorIndex = (max(0, round - 1) + timerExpiredColorOffset) % colors.count
         return isLastRoundOfLevel
             ? shuffledColors[colorIndex]
             : colors[colorIndex]
@@ -73,6 +74,7 @@ class GameViewModel {
         guard timerIsActive, !isWinner else { return }
         timeRemaining -= 1
         if timeRemaining <= 0 {
+            timerExpiredColorOffset += 1
             randomizeBoard()
             timeRemaining = timerDuration
         }
