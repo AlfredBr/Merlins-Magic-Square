@@ -31,13 +31,15 @@ struct ScoreBoardView: View {
             .animation(
                 vm.timerIsUrgent
                     ? .easeInOut(duration: 0.5).repeatForever(autoreverses: true)
-                    : .default,
+                    : .easeInOut(duration: 0.3),
                 value: vm.timerIsUrgent
             )
     }
 
     private func scoreChip(icon: String, label: String) -> some View {
         Label(label, systemImage: icon)
+            .lineLimit(1)
+            .minimumScaleFactor(0.7)
             .padding(.vertical, 6)
             .padding(.horizontal, 12)
             .background(.thinMaterial, in: Capsule())
