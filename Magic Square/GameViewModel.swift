@@ -26,6 +26,8 @@ class GameViewModel {
     var boxes = [Bool](repeating: false, count: 81)
     var isWinner = false
     var showSplash = true
+    var timeRemaining: Double = 20
+    var timerIsActive: Bool = false
 
     // MARK: - Computed
     var gridSize: Int { level + 1 }
@@ -34,6 +36,17 @@ class GameViewModel {
     var isLevelOver: Bool { round > roundsInLevel }
     var isLastRoundOfLevel: Bool { round >= roundsInLevel }
     var isGameOver: Bool { level >= maxGameLevel }
+
+    var timerDuration: Double { Double(gridSize * 10) }
+
+    var timerIsUrgent: Bool { timeRemaining <= 10 }
+
+    var timerLabel: String {
+        let total = max(0, Int(timeRemaining))
+        let minutes = total / 60
+        let seconds = total % 60
+        return String(format: "%d:%02d", minutes, seconds)
+    }
 
     // Stable shuffle per-session so fillColor doesn't flicker on every redraw
     private let shuffledColors = Color.collection.shuffled()
@@ -55,7 +68,19 @@ class GameViewModel {
         return "\(n)×\(n)"
     }
 
+    func tickTimer() {
+        guard timerIsActive, !isWinner else { return }
+        timeRemaining -= 1
+        if timeRemaining <= 0 {
+            randomizeBoard()
+            timeRemaining = timerDuration
+        }
+    }
 
+    func resetTimer() {
+        timeRemaining = timerDuration
+        timerIsActive = true
+    }
 
     // MARK: - Game actions
     func flip(_ x: Int, _ y: Int) {
@@ -75,7 +100,10 @@ class GameViewModel {
 
     func checkForWinner() {
         let won = (0 ..< gridSize * gridSize).allSatisfy { boxes[$0] }
-        if won { isWinner = true }
+        if won {
+            isWinner = true
+            timerIsActive = false
+        }
         saveGame()
     }
 
@@ -90,6 +118,7 @@ class GameViewModel {
         randomizeBoard()
         move = 0
         saveGame()
+        resetTimer()
     }
 
     func resetGame() {
@@ -98,6 +127,7 @@ class GameViewModel {
         move = 0
         resetBoard()
         saveGame()
+        resetTimer()
     }
 
     func resetBoard() {
@@ -130,5 +160,6 @@ class GameViewModel {
         round = max(1, storedRound)
         boxes = UserDefaults.standard.array(forKey: Key.gameBoxes) as? [Bool]
               ?? [Bool](repeating: false, count: 81)
+        resetTimer()
     }
 }
