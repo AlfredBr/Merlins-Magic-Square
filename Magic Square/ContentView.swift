@@ -8,8 +8,6 @@ struct ContentView: View {
     @State private var resetTapCount = 0
     @State private var showResetConfirmation = false
 
-    private let ticker = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
     var body: some View {
         ZStack {
             LinearGradient(
@@ -30,9 +28,13 @@ struct ContentView: View {
         .animation(.easeInOut(duration: 0.4), value: vm.showSplash)
         .sensoryFeedback(.impact(weight: .light), trigger: vm.move)
         .sensoryFeedback(.success, trigger: vm.isWinner)
-        .onReceive(ticker) { _ in
-            guard !vm.showSplash else { return }
-            vm.tickTimer()
+        .task {
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(1))
+                if !vm.showSplash {
+                    vm.tickTimer()
+                }
+            }
         }
     }
 
